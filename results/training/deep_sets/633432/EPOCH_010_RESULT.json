@@ -1,0 +1,285 @@
+{
+  "schema": "ain.stage6.fixed_epoch.result.v1",
+  "status": "COMPLETE",
+  "arm": "deep_sets",
+  "model_seed": 633432,
+  "epoch": 10,
+  "optimizer_updates": 32000,
+  "checkpoint_file": "epoch_010.pt",
+  "checkpoint_sha256": "a6b5cc2a9ad035b069018e06c3ce31a0b461d223369707b73219def187983ad7",
+  "state_digest": "45e85da48fde934e6ac39c97900264d8fc2784ba17d3b8e9a4d337946745d68b",
+  "validation": {
+    "epoch": 10,
+    "optimizer_updates": 32000,
+    "ranking_KL": 0.12329167127609253,
+    "group_proxy": 0.005089619662612677,
+    "numeric": 0.01501077227294445,
+    "atom": 0.01076024491339922,
+    "state_future": 0.07323060184717178,
+    "executed_future": 0.07389172911643982,
+    "total": 0.18286271393299103,
+    "target_entropy": 1.865107774734497,
+    "proxy_top1_accuracy": 0.62939453125,
+    "paid_regret_m2": 829.8951416015625,
+    "numeric_MAE": 0.09107416123151779
+  },
+  "best_validation": {
+    "epoch": 10,
+    "optimizer_updates": 32000,
+    "total": 0.18286271393299103
+  },
+  "original_lr_schedule_target_updates": 64000,
+  "training_configuration": {
+    "model": {
+      "hidden_dim": 384,
+      "memory_dim": 384,
+      "num_layers": 6,
+      "num_heads": 8
+    },
+    "world_batch": 32,
+    "bptt_steps": 8,
+    "epochs": 20,
+    "learning_rate": 0.0002,
+    "weight_decay": 0.0001,
+    "warmup_updates": 500,
+    "checkpoint_interval": 128,
+    "loader_workers": 4,
+    "cpu_threads": 1,
+    "bf16": true
+  },
+  "execution": {
+    "schema": "ain.stage6.linux_resume.execution.v1",
+    "original_execution": {
+      "schema": "ain.stage6.epoch_stop.execution.v1",
+      "base_source_digest": "4116b78d7914e5a195263fe14afa5863bb8ee9da4afa54e279eeed202d9e0d5e",
+      "original_plan_digest": "6171de84469f15cf5c8be1669be8fc9e4f80ed03336c1020c5e73d5574aad7ae",
+      "original_run_binding_digest": "bc98f1ff57d80fa057322f11721754b97f3a55534e0ee6be077b3f4628b9c5a7",
+      "profile_digest": "19ebe0e2cc16645403ac775f87d2af1fbaadb79aad8ea05c24af918e68de3c5d",
+      "input_transport_profile_digest": "ecf1279578c9d740afab9763dbc88a90ab0f109b6f486f08fbcb90b0388e4ae1",
+      "stop_epoch": 10,
+      "stop_updates": 32000,
+      "updates_per_epoch": 3200,
+      "original_lr_schedule_epochs": 20,
+      "original_lr_schedule_updates": 64000,
+      "maximum_workers_per_physical_gpu": {
+        "0": 2,
+        "1": 3
+      },
+      "checkpoint_selection": "fixed_epoch_10",
+      "prepare_index_sha256": "c6b005aec9c1c39ad61b8b9c29136b69eee40022fd7166f1a3701088568fd87d",
+      "validation_index_sha256": "89fb66630970e919b4f1bea4df2fdad761e5891c6a13d4f25c490e114b21b5f3"
+    },
+    "profile": {
+      "schema": "ain.stage6.linux_profile.v1",
+      "stop_epoch": 10,
+      "stop_updates": 32000,
+      "original_lr_schedule_epochs": 20,
+      "data_worlds": 12800,
+      "validation_worlds": 128,
+      "job_gpu_map": {
+        "integrated_agent/633433": 0,
+        "set_transformer/633431": 0,
+        "set_transformer/633432": 1,
+        "set_transformer/633433": 1,
+        "deep_sets/633431": 2,
+        "deep_sets/633432": 2,
+        "deep_sets/633433": 2
+      },
+      "gpu_uuids": {
+        "0": "GPU-7cc5b203-fc8a-a08b-21b2-dd2310760f46",
+        "1": "GPU-4593fc96-c54c-3b47-830c-8146e43c5556",
+        "2": "GPU-1c9a1473-e79a-8d1f-2493-5de750d54088"
+      },
+      "allocator_cap_gib": {
+        "0": 14.5,
+        "1": 14.5,
+        "2": 9.4
+      },
+      "context_reserve_gib": 0.65,
+      "pytorch_allocator": "expandable_segments:True",
+      "world_batch": 32,
+      "bptt_steps": 8,
+      "cpu_quota": 75,
+      "memory_quota_gib": 270,
+      "math_and_input_configuration": "original_unchanged",
+      "files": {
+        "linux_runner.py": "3862c915e96c448ecae584390e06dc84b8c7a4207240673843facc9092477a79"
+      },
+      "memory_diagnostic": {
+        "integrated_agent": {
+          "status": "PASSED",
+          "arm": "integrated_agent",
+          "gpu": 0,
+          "measurements": [
+            {
+              "start": 0,
+              "maximum_nodes": 193,
+              "loss": 1.2368392944335938,
+              "gradient_norm": 2.9845969676971436,
+              "elapsed_s": 2.740516658872366,
+              "peak_allocated_gib": 8.370998859405518,
+              "peak_reserved_gib": 8.486328125
+            },
+            {
+              "start": 24,
+              "maximum_nodes": 194,
+              "loss": 1.1158465147018433,
+              "gradient_norm": 3.5363528728485107,
+              "elapsed_s": 2.34850718267262,
+              "peak_allocated_gib": 9.573765754699707,
+              "peak_reserved_gib": 9.681640625
+            },
+            {
+              "start": 56,
+              "maximum_nodes": 194,
+              "loss": 1.0131338834762573,
+              "gradient_norm": 3.326101303100586,
+              "elapsed_s": 2.4230941217392683,
+              "peak_allocated_gib": 9.573765754699707,
+              "peak_reserved_gib": 9.681640625
+            }
+          ],
+          "worlds_read": 32,
+          "backward_passes": 3,
+          "optimizer_updates": 0,
+          "world_advances": 0,
+          "scope": "memory and numerical readiness, not a performance comparison"
+        },
+        "set_transformer": {
+          "status": "PASSED",
+          "arm": "set_transformer",
+          "gpu": 1,
+          "measurements": [
+            {
+              "start": 0,
+              "maximum_nodes": 193,
+              "loss": 1.2609401941299438,
+              "gradient_norm": 3.2993574142456055,
+              "elapsed_s": 2.747501963749528,
+              "peak_allocated_gib": 8.20162057876587,
+              "peak_reserved_gib": 8.2734375
+            },
+            {
+              "start": 24,
+              "maximum_nodes": 194,
+              "loss": 1.137969970703125,
+              "gradient_norm": 3.716050148010254,
+              "elapsed_s": 2.3668233826756477,
+              "peak_allocated_gib": 9.35289478302002,
+              "peak_reserved_gib": 9.41015625
+            },
+            {
+              "start": 56,
+              "maximum_nodes": 194,
+              "loss": 1.0357564687728882,
+              "gradient_norm": 3.490973949432373,
+              "elapsed_s": 2.413989145308733,
+              "peak_allocated_gib": 9.35289478302002,
+              "peak_reserved_gib": 9.41015625
+            }
+          ],
+          "worlds_read": 32,
+          "backward_passes": 3,
+          "optimizer_updates": 0,
+          "world_advances": 0,
+          "scope": "memory and numerical readiness, not a performance comparison"
+        },
+        "deep_sets": {
+          "status": "PASSED",
+          "arm": "deep_sets",
+          "gpu": 2,
+          "measurements": [
+            {
+              "start": 0,
+              "maximum_nodes": 193,
+              "loss": 1.2008304595947266,
+              "gradient_norm": 2.727870225906372,
+              "elapsed_s": 2.6125912219285965,
+              "peak_allocated_gib": 7.02589750289917,
+              "peak_reserved_gib": 7.0859375
+            },
+            {
+              "start": 24,
+              "maximum_nodes": 194,
+              "loss": 1.0545012950897217,
+              "gradient_norm": 4.040832996368408,
+              "elapsed_s": 2.2460609544068575,
+              "peak_allocated_gib": 8.008474349975586,
+              "peak_reserved_gib": 8.0625
+            },
+            {
+              "start": 56,
+              "maximum_nodes": 194,
+              "loss": 0.9850693941116333,
+              "gradient_norm": 4.605944633483887,
+              "elapsed_s": 2.4036066364496946,
+              "peak_allocated_gib": 8.008474349975586,
+              "peak_reserved_gib": 8.0625
+            }
+          ],
+          "worlds_read": 32,
+          "backward_passes": 3,
+          "optimizer_updates": 0,
+          "world_advances": 0,
+          "scope": "memory and numerical readiness, not a performance comparison"
+        }
+      },
+      "environment": {
+        "status": "PASSED",
+        "python": "3.12.3 | packaged by Anaconda, Inc. | (main, May  6 2024, 19:46:43) [GCC 11.2.0]",
+        "executable": "/root/autodl-tmp/stage6_runtime/bin/python",
+        "dependencies": {
+          "torch": "2.10.0+cu128",
+          "numpy": "2.3.5",
+          "scipy": "1.17.0",
+          "threadpoolctl": "3.6.0"
+        },
+        "cuda": "12.8",
+        "architectures": [
+          "sm_70",
+          "sm_75",
+          "sm_80",
+          "sm_86",
+          "sm_90",
+          "sm_100",
+          "sm_120"
+        ],
+        "devices": [
+          {
+            "index": 0,
+            "name": "NVIDIA GeForce RTX 5090",
+            "memory_bytes": 33670758400,
+            "bf16": true,
+            "calculation": 8.0
+          },
+          {
+            "index": 1,
+            "name": "NVIDIA GeForce RTX 5090",
+            "memory_bytes": 33670758400,
+            "bf16": true,
+            "calculation": 8.0
+          },
+          {
+            "index": 2,
+            "name": "NVIDIA GeForce RTX 5090",
+            "memory_bytes": 33670758400,
+            "bf16": true,
+            "calculation": 8.0
+          }
+        ],
+        "cpu_affinity_count": 208,
+        "cgroup_cpu_max": "7500000 100000",
+        "cgroup_memory_max": "289910292480",
+        "optimizer_updates": 0,
+        "world_advances": 0
+      }
+    },
+    "profile_digest": "af95967c752e53a91d7044934758f606f84300f9e0ebcf2b44cef59bd56a0f2e",
+    "source_project": "/root/autodl-tmp/radar_stage6_linux/project",
+    "source_run": "/root/autodl-tmp/radar_stage6_linux/run",
+    "target_epoch": 10,
+    "target_updates": 32000,
+    "original_lr_schedule_epochs": 20
+  },
+  "saved_ns": 1789543225890308372
+}

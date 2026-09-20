@@ -1,0 +1,5 @@
+# Install a PyTorch build for the target CPU/CUDA platform first; see README.
+torch==2.10.0
+numpy==2.3.5
+scipy==1.17.0
+threadpoolctl==3.6.0

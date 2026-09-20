@@ -1,0 +1,22 @@
+{
+  "schema": "ain.stage6.input.transport.profile.v1",
+  "revision": "ordered_threads_20260911_v1",
+  "base_source_digest": "4116b78d7914e5a195263fe14afa5863bb8ee9da4afa54e279eeed202d9e0d5e",
+  "dependencies": {
+    "numpy": "2.3.5",
+    "scipy": "1.17.0",
+    "torch": "2.10.0",
+    "threadpoolctl": "3.6.0"
+  },
+  "transport": "ordered_threads_one_batch_ahead",
+  "maximum_loading_threads": 4,
+  "prefetch_batches": 1,
+  "semantics": "unchanged dataset __getitem__, sampler order, batch membership, tensor values, loss, model, optimizer, precision and BPTT; worker count interpreted as up to four IO threads",
+  "provenance": "base source digest identifies unchanged original source; this profile additionally identifies executable input adapter; each checkpoint has a SHA-bound execution companion",
+  "files": {
+    "ordered_input.py": "41af7e0a839b5be617376bb9b29d8a6cd3ce412f3e3c6f3fd96b24f36c794cb6",
+    "stage6_input_runner.py": "a59eee8e4cbc396bd20567a67514dc3c341b3f0b111148bb902272485bfffd27",
+    "Start-Stage6FastInput.ps1": "212d777b8cd390077371dc8b1ed7b7e7e9d0c37c791bfdae8624112c26fca7bb",
+    "Watch-Stage6Input.ps1": "233c2df0bf7ca044a45cf5b138af572e0a9b16024c7aac2b34445c33d539bc23"
+  }
+}

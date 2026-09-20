@@ -1,0 +1,437 @@
+{
+  "schema_version": "experiment-contract.v2",
+  "mode": "confirmatory",
+  "experiment_id": "stage6_confirmation_192_worlds_20260916",
+  "created_at": "2026-09-16T15:51:11.466800+00:00",
+  "objective": "Estimate the paired-world change in closed-loop multi-target estimation and resource use for the frozen Stage6 policies on the eight prespecified scenarios.",
+  "authorization": {
+    "source": "User instruction: 现在开始",
+    "target": "/root/autodl-tmp/radar_stage6_linux",
+    "scope": "4992 confirmation episodes and final integrity/statistical summaries; no optimizer updates"
+  },
+  "inputs": [
+    {
+      "development_design": "/root/autodl-tmp/radar_stage6_linux/posttrain_eval/development_design.json",
+      "digest": "0b7df7feaceeaab3f003dda5fcbac0c39eb5b4f579464eeb85e3e1b0363c47c2"
+    },
+    {
+      "readiness": "/root/autodl-tmp/radar_stage6_linux/operations/confirmation_launch_20260916/DEVELOPMENT_READINESS.json",
+      "sha256": "2e5371bade5497f9ca418b8c672f3583a9a6c51982f6a1e9907b86c248df5737"
+    },
+    {
+      "resource_validation": "/root/autodl-tmp/radar_stage6_linux/operations/resource_tuning_20260916/BENCHMARK_REPORT.json",
+      "sha256": "c147b3734bb90439845386399cefe8587b0969299492de1641c7ac2d854bc62c"
+    }
+  ],
+  "resource_budget": {
+    "episodes": 4992,
+    "worlds": 192,
+    "decision_cycles_per_episode": 64,
+    "world_advances": 319488,
+    "optimizer_updates": 0,
+    "max_workers": 64,
+    "gpu_count": 3,
+    "gpu_workers_per_device": 24,
+    "cpu_threads_per_worker": 1,
+    "root_evaluations_per_cycle": 12,
+    "construction_attempts_per_cycle": 192
+  },
+  "failure_handling": {
+    "execution": "Any failed episode stops new dispatch; running episodes finish. Preserve errors and completed results.",
+    "restart": "Only unchanged frozen jobs may resume after an infrastructure failure. Deterministic scientific failure requires review, not silent exclusion.",
+    "missing_primary": "Do not issue a complete primary estimate when an expected primary outcome is missing or nonfinite.",
+    "conditional_secondary": "Retain null reasons and denominators; compare on complete paired worlds for that conditional metric, never average away a missing fitted seed."
+  },
+  "claim_ceiling": "Paired simulation performance for the registered measurement-level model and the nine retained trained fits; the study does not estimate variability from an unlimited population of future training seeds.",
+  "estimands": [
+    {
+      "name": "primary",
+      "metric": "mean_gospa_m",
+      "unit": "m",
+      "contrast": {
+        "integrated_agent/n1f1": 1.0,
+        "numeric_optimizer": -1.0
+      },
+      "direction": "negative is improved estimation",
+      "aggregation": "mean of three fixed fitted seeds within world; mean worlds within scenario; equal mean across eight scenarios"
+    },
+    {
+      "name": "secondary",
+      "metrics": "the 19 previously defined physical and accounting quantities",
+      "contrasts": "all prespecified method-minus-numerical-search and integrated-agent factorial contrasts; descriptive intervals"
+    }
+  ],
+  "independent_unit": "world",
+  "independent_unit_definition": "One simulator seed generates the shared exogenous target, nuisance, emission and transport law; all policies and retained fitted seeds remain paired within that world.",
+  "treatments": [
+    {
+      "architectures": [
+        "integrated_agent",
+        "deep_sets",
+        "set_transformer"
+      ],
+      "model_seeds": [
+        633431,
+        633432,
+        633433
+      ],
+      "matrix": "integrated: four numeric/feedback cells; Deep Sets and Set Transformer: fixed/no-feedback and generated/feedback"
+    }
+  ],
+  "controls": {
+    "positive": {
+      "metric_controls": [
+        {
+          "name": "perfect_localization",
+          "expected_m": 0.0,
+          "observed_m": 0.0,
+          "status": "PASS"
+        },
+        {
+          "name": "ten_meter_error",
+          "expected_m": 10.0,
+          "observed_m": 10.0,
+          "status": "PASS"
+        },
+        {
+          "name": "missed_target",
+          "expected_m": 176.77669529663686,
+          "observed_m": 176.7766952966369,
+          "status": "PASS"
+        },
+        {
+          "name": "false_track",
+          "expected_m": 176.77669529663686,
+          "observed_m": 176.7766952966369,
+          "status": "PASS"
+        },
+        {
+          "name": "out_of_gate",
+          "expected_m": 250.0,
+          "observed_m": 250.0,
+          "status": "PASS"
+        },
+        {
+          "name": "empty_world",
+          "expected_m": 0.0,
+          "observed_m": 0.0,
+          "status": "PASS"
+        }
+      ],
+      "resource_replay": "80 unchanged episodes, 1520 metrics reproduced"
+    },
+    "negative": {
+      "null_and_miss_controls": [
+        {
+          "name": "missed_target",
+          "expected_m": 176.77669529663686,
+          "observed_m": 176.7766952966369,
+          "status": "PASS"
+        },
+        {
+          "name": "false_track",
+          "expected_m": 176.77669529663686,
+          "observed_m": 176.7766952966369,
+          "status": "PASS"
+        },
+        {
+          "name": "empty_world",
+          "expected_m": 0.0,
+          "observed_m": 0.0,
+          "status": "PASS"
+        }
+      ],
+      "mechanism_controls": "fixed numeric parameters and feedback disabled cells, already executed on development worlds"
+    },
+    "comparators": [
+      "fixed_analytic",
+      "numeric_optimizer"
+    ]
+  },
+  "analysis_plan": {
+    "implementation_sha256": "3b92cf82f54245be1efef0aef83f3397f509899aa26157e30b6c5d9f4eebca61",
+    "bootstrap_draws": 10000,
+    "bootstrap_seed": 90231,
+    "confidence": 0.95,
+    "bootstrap": "stratified paired-world percentile bootstrap; fitted models held fixed",
+    "reporting": "Report all scenarios, all three fitted seeds, metric units and conditional denominators. Do not select scenarios using confirmation outcomes.",
+    "primary_decision": "Upper primary 95% interval below zero supports lower mean GOSPA; upper bound at or below -5 m supports the prespecified practically useful improvement.",
+    "stopping": "Fixed 192 worlds; no outcome-based early stopping or sample-size extension."
+  },
+  "minimum_effects": [
+    {
+      "metric": "mean_gospa_m",
+      "improvement_m": 5.0,
+      "rationale": "Prespecified practical reporting threshold equal to 2 percent of the 250 m GOSPA cutoff; not a launch or sample-selection criterion."
+    }
+  ],
+  "sample_size_plan": {
+    "size_rule": "Retain the previously planned 192 new worlds, 24 in each scenario, all 26 configurations per world.",
+    "world_seeds": [
+      623000001,
+      623000002,
+      623000003,
+      623000004,
+      623000005,
+      623000006,
+      623000007,
+      623000008,
+      623000009,
+      623000010,
+      623000011,
+      623000012,
+      623000013,
+      623000014,
+      623000015,
+      623000016,
+      623000017,
+      623000018,
+      623000019,
+      623000020,
+      623000021,
+      623000022,
+      623000023,
+      623000024,
+      623000025,
+      623000026,
+      623000027,
+      623000028,
+      623000029,
+      623000030,
+      623000031,
+      623000032,
+      623000033,
+      623000034,
+      623000035,
+      623000036,
+      623000037,
+      623000038,
+      623000039,
+      623000040,
+      623000041,
+      623000042,
+      623000043,
+      623000044,
+      623000045,
+      623000046,
+      623000047,
+      623000048,
+      623000049,
+      623000050,
+      623000051,
+      623000052,
+      623000053,
+      623000054,
+      623000055,
+      623000056,
+      623000057,
+      623000058,
+      623000059,
+      623000060,
+      623000061,
+      623000062,
+      623000063,
+      623000064,
+      623000065,
+      623000066,
+      623000067,
+      623000068,
+      623000069,
+      623000070,
+      623000071,
+      623000072,
+      623000073,
+      623000074,
+      623000075,
+      623000076,
+      623000077,
+      623000078,
+      623000079,
+      623000080,
+      623000081,
+      623000082,
+      623000083,
+      623000084,
+      623000085,
+      623000086,
+      623000087,
+      623000088,
+      623000089,
+      623000090,
+      623000091,
+      623000092,
+      623000093,
+      623000094,
+      623000095,
+      623000096,
+      623000097,
+      623000098,
+      623000099,
+      623000100,
+      623000101,
+      623000102,
+      623000103,
+      623000104,
+      623000105,
+      623000106,
+      623000107,
+      623000108,
+      623000109,
+      623000110,
+      623000111,
+      623000112,
+      623000113,
+      623000114,
+      623000115,
+      623000116,
+      623000117,
+      623000118,
+      623000119,
+      623000120,
+      623000121,
+      623000122,
+      623000123,
+      623000124,
+      623000125,
+      623000126,
+      623000127,
+      623000128,
+      623000129,
+      623000130,
+      623000131,
+      623000132,
+      623000133,
+      623000134,
+      623000135,
+      623000136,
+      623000137,
+      623000138,
+      623000139,
+      623000140,
+      623000141,
+      623000142,
+      623000143,
+      623000144,
+      623000145,
+      623000146,
+      623000147,
+      623000148,
+      623000149,
+      623000150,
+      623000151,
+      623000152,
+      623000153,
+      623000154,
+      623000155,
+      623000156,
+      623000157,
+      623000158,
+      623000159,
+      623000160,
+      623000161,
+      623000162,
+      623000163,
+      623000164,
+      623000165,
+      623000166,
+      623000167,
+      623000168,
+      623000169,
+      623000170,
+      623000171,
+      623000172,
+      623000173,
+      623000174,
+      623000175,
+      623000176,
+      623000177,
+      623000178,
+      623000179,
+      623000180,
+      623000181,
+      623000182,
+      623000183,
+      623000184,
+      623000185,
+      623000186,
+      623000187,
+      623000188,
+      623000189,
+      623000190,
+      623000191,
+      623000192
+    ],
+    "power_or_sensitivity": {
+      "development_plugin_standard_error_m": 2.086979253155371,
+      "normal_approx_95_halfwidth_m": 4.090404172666714,
+      "normal_approx_80pct_detectable_effect_m": 5.846850226142335,
+      "bounded_95_halfwidth_m": 84.88134473378871,
+      "bound_basis": "Independent bounded world differences in [-250 sqrt(3),250 sqrt(3)], from at most three truths and three retained tracks; Hoeffding halfwidth. Empirical sensitivity is a planning approximation, not guaranteed power."
+    }
+  },
+  "multiplicity": {
+    "primary_family": "One primary comparison on one primary metric at two-sided 95 percent confidence.",
+    "secondary_family": "Fixed descriptive interval family; no familywise superiority claim from unadjusted secondary intervals."
+  },
+  "fidelity": "R1",
+  "fidelity_description": "Measurement-level, link-budget and thermal-noise model with scenario-specific occlusion, availability and transport processes.",
+  "embargo": {
+    "confirmation_unopened": true,
+    "separation": "Training, validation, development and confirmation world seeds are pairwise disjoint; confirmation output directory absent at freeze.",
+    "monitoring": "Operational status and fixed outcome collection are permitted after freeze. No adaptation of models, job matrix or analysis from partial outcomes."
+  },
+  "admissibility": {
+    "A0": {
+      "status": "PASS",
+      "reason": "1664 complete development episodes, 64 independent worlds, finite complete primary outcomes; exact metric control values passed."
+    },
+    "A1": {
+      "status": "PASS",
+      "reason": "Eight executed scenarios; development GOSPA range is nonconstant.",
+      "observed_range_m": [
+        2.9180967260022146,
+        268.94002772866327
+      ]
+    },
+    "A2": {
+      "status": "PASS",
+      "reason": "Primary outcomes vary below the mathematical upper bound; matched-only metric nulls have explicit reasons and paired denominators. Missed and false target penalties checked separately."
+    },
+    "A3": {
+      "status": "PASS",
+      "reason": "Distinct fixed/generated and feedback treatment cells are executable and evaluated; observed scenario-level paired changes exceed the reporting threshold in magnitude."
+    },
+    "A4": {
+      "status": "PASS",
+      "reason": "Executed near/transition/far range, emitter/illuminator attenuation, intermittency, outage and transport/occlusion ladder. Claim is confined to the same declared measurement model."
+    },
+    "A5": {
+      "status": "PASS",
+      "reason": "Six exact primary-metric controls and 80 resource replays passed; analytic/numerical baselines and all four mechanism cells already executed on development."
+    }
+  },
+  "launch_gate": {
+    "target": "4992 frozen Stage6 confirmation episodes",
+    "status": "GO",
+    "reason": "Finite checks, source and checkpoint bindings, disjoint unopened worlds and fixed analysis established before generation."
+  },
+  "bindings": {
+    "jobs_digest": "c297e8ef21a4ab27fef2fc8b0b7ff041e0c440ab6228acb16a336cf20f00e14a",
+    "adapter_digest": "83f181f82aa3086a0cdec13b8a392f1b9d0d8d8ea7638cb6d54a1e9d8ae25c03",
+    "science_digest": "4116b78d7914e5a195263fe14afa5863bb8ee9da4afa54e279eeed202d9e0d5e",
+    "checkpoints": {
+      "integrated_agent/633431": "e1f6760b0cd1896602b0e45dd6f22e8191781463a6f418c205682fa1110501e5",
+      "integrated_agent/633432": "c4905f3d951194a660c8e697d7f8c14197a5504cc278bf3f55b072fd254d1037",
+      "integrated_agent/633433": "8ec69998f52f2972dbc307e9c8f62cebef567831329903ee22aa68bfd4d644a8",
+      "deep_sets/633431": "a9fd53a67430a3e9be7b7295671aff34a13b058a65187308e1719758f7bbd2eb",
+      "deep_sets/633432": "8d01e8e50bfe74b1c7beda8b7500e3c99660bc8861c9d93191745ed317826cdd",
+      "deep_sets/633433": "8d88845de11c3d88fe77ab7e4404c408fdf63fe562461627c0c276477b3ca794",
+      "set_transformer/633431": "480d1dd381c0f57c730123792c3baa128ffd751201df373b564ab5de803aa4db",
+      "set_transformer/633432": "1727e0e9d73b7f2f8ddbb947fd112b324748f7ba3c152c978ca909175103aaa1",
+      "set_transformer/633433": "cd49e1c6dc8bf28b715341a8e191ae98552090ff935ca9969a6e983ef050ba1c"
+    },
+    "parent_development_design_digest": "0b7df7feaceeaab3f003dda5fcbac0c39eb5b4f579464eeb85e3e1b0363c47c2"
+  },
+  "digest_convention": "SHA-256 of canonical JSON with sorted keys, compact separators, UTF-8, no NaN; exclude only top-level freeze_digest.",
+  "freeze_digest": "sha256:adae0774663743c169a28a700e858c98d6c8d96b11a6eb6138990e4618ba2160"
+}

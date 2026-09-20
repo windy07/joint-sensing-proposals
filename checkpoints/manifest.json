@@ -1,0 +1,106 @@
+{
+  "repository": "windy07/joint-sensing-proposals",
+  "release_tag": "v0.1.0",
+  "selection_rule": "minimum validation total over completed epochs 1 through 10; earliest tie",
+  "models": [
+    {
+      "arm": "integrated_agent",
+      "model_seed": 633431,
+      "chosen_epoch": 10,
+      "optimizer_updates": 32000,
+      "validation_total": 0.16029442846775055,
+      "path": "run/models/integrated_agent/633431/best.pt",
+      "asset": "integrated_agent_633431_best.pt",
+      "bytes": 56759601,
+      "sha256": "e1f6760b0cd1896602b0e45dd6f22e8191781463a6f418c205682fa1110501e5"
+    },
+    {
+      "arm": "integrated_agent",
+      "model_seed": 633432,
+      "chosen_epoch": 10,
+      "optimizer_updates": 32000,
+      "validation_total": 0.15425065159797668,
+      "path": "run/models/integrated_agent/633432/best.pt",
+      "asset": "integrated_agent_633432_best.pt",
+      "bytes": 56759601,
+      "sha256": "c4905f3d951194a660c8e697d7f8c14197a5504cc278bf3f55b072fd254d1037"
+    },
+    {
+      "arm": "integrated_agent",
+      "model_seed": 633433,
+      "chosen_epoch": 10,
+      "optimizer_updates": 32000,
+      "validation_total": 0.16605444252490997,
+      "path": "run/models/integrated_agent/633433/best.pt",
+      "asset": "integrated_agent_633433_best.pt",
+      "bytes": 56763825,
+      "sha256": "8ec69998f52f2972dbc307e9c8f62cebef567831329903ee22aa68bfd4d644a8"
+    },
+    {
+      "arm": "deep_sets",
+      "model_seed": 633431,
+      "chosen_epoch": 10,
+      "optimizer_updates": 32000,
+      "validation_total": 0.18867048621177673,
+      "path": "run/models/deep_sets/633431/best.pt",
+      "asset": "deep_sets_633431_best.pt",
+      "bytes": 49667569,
+      "sha256": "a9fd53a67430a3e9be7b7295671aff34a13b058a65187308e1719758f7bbd2eb"
+    },
+    {
+      "arm": "deep_sets",
+      "model_seed": 633432,
+      "chosen_epoch": 10,
+      "optimizer_updates": 32000,
+      "validation_total": 0.18286271393299103,
+      "path": "run/models/deep_sets/633432/best.pt",
+      "asset": "deep_sets_633432_best.pt",
+      "bytes": 49667569,
+      "sha256": "8d01e8e50bfe74b1c7beda8b7500e3c99660bc8861c9d93191745ed317826cdd"
+    },
+    {
+      "arm": "deep_sets",
+      "model_seed": 633433,
+      "chosen_epoch": 10,
+      "optimizer_updates": 32000,
+      "validation_total": 0.18331094086170197,
+      "path": "run/models/deep_sets/633433/best.pt",
+      "asset": "deep_sets_633433_best.pt",
+      "bytes": 49667569,
+      "sha256": "8d88845de11c3d88fe77ab7e4404c408fdf63fe562461627c0c276477b3ca794"
+    },
+    {
+      "arm": "set_transformer",
+      "model_seed": 633431,
+      "chosen_epoch": 9,
+      "optimizer_updates": 28800,
+      "validation_total": 0.1688540279865265,
+      "path": "run/models/set_transformer/633431/best.pt",
+      "asset": "set_transformer_633431_best.pt",
+      "bytes": 56763441,
+      "sha256": "480d1dd381c0f57c730123792c3baa128ffd751201df373b564ab5de803aa4db"
+    },
+    {
+      "arm": "set_transformer",
+      "model_seed": 633432,
+      "chosen_epoch": 10,
+      "optimizer_updates": 32000,
+      "validation_total": 0.15988346934318542,
+      "path": "run/models/set_transformer/633432/best.pt",
+      "asset": "set_transformer_633432_best.pt",
+      "bytes": 56763633,
+      "sha256": "1727e0e9d73b7f2f8ddbb947fd112b324748f7ba3c152c978ca909175103aaa1"
+    },
+    {
+      "arm": "set_transformer",
+      "model_seed": 633433,
+      "chosen_epoch": 9,
+      "optimizer_updates": 28800,
+      "validation_total": 0.1640220731496811,
+      "path": "run/models/set_transformer/633433/best.pt",
+      "asset": "set_transformer_633433_best.pt",
+      "bytes": 56763441,
+      "sha256": "cd49e1c6dc8bf28b715341a8e191ae98552090ff935ca9969a6e983ef050ba1c"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "status": "PASSED",
+  "original_source_and_config_files": 240,
+  "python_files_parsed": 204,
+  "existing_unit_tests_passed": 19,
+  "checkpoint_bytes_and_tensor_states_verified": 9,
+  "confirmation_episode_summaries": 4992,
+  "development_episode_summaries": 1664,
+  "all_recomputed_statistics_match": true,
+  "table_exports_equal_after_line_ending_normalization": true,
+  "sensitive_pattern_scan_files": 249,
+  "new_optimizer_updates": 0,
+  "new_world_advances": 0,
+  "portable_cli_checks": "job previews, asset verification, statistical reproduction",
+  "full_linux_simulation_run_during_upload": false
+}

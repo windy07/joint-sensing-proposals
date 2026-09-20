@@ -1,0 +1,33 @@
+{
+  "collection_status": "COMPLETE",
+  "scope": "confirmation",
+  "main_performance": [
+    "mean_gospa_m",
+    "position_rmse_m",
+    "matched_target_time_fraction",
+    "mean_false_tracks"
+  ],
+  "resource_panel": [
+    "rf_energy_J",
+    "receiver_electrical_energy_J",
+    "transmit_on_s",
+    "exposure_energy_density_proxy_J_m2"
+  ],
+  "scenario_panel": "eight scenarios, GOSPA and target-time coverage; same methods and worlds",
+  "mechanism_panel": "four inference configurations and paired interaction; three trained seeds",
+  "appendix": [
+    "per-fit results",
+    "conditional sample counts",
+    "unconfirmed targets",
+    "complete action timelines"
+  ],
+  "not_primary_metrics": [
+    "training loss",
+    "normalized numeric MAE",
+    "candidate surrogate regret",
+    "candidate count",
+    "co-scheduled wall time"
+  ],
+  "runtime_comparison": "separate matched-load measurement on Linux; co-scheduled logs retained as operational evidence",
+  "caption": "Equal scenario weights; intervals resample paired worlds with trained fits held fixed. Matched RMSE uses confirmed matched target times. Coverage and missing-world counts accompany it. Absent estimates are shown as dashes. Three fits are not three independent worlds."
+}

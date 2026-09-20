@@ -1,0 +1,17 @@
+\begin{tabular}{lrrrr}
+\toprule
+Method & GOSPA (m)$\downarrow$ & Matched RMSE (m)$\downarrow$ & Coverage (\%)$\uparrow$ & False tracks$\downarrow$ \\
+\midrule
+Analytic fixed controls & 74.63 [69.33, 80.28] & 18.09 [16.60, 19.66] & 74.37 [72.26, 76.37] & 0.01 [0.00, 0.02] \\
+Numerical search & 67.91 [63.03, 72.93] & 17.19 [15.83, 18.68] & 76.45 [74.52, 78.34] & 0.01 [0.00, 0.01] \\
+\midrule
+Relational encoder / fixed & 70.69 [65.56, 75.91] & 17.79 [16.29, 19.46] & 75.41 [73.28, 77.48] & 0.01 [0.00, 0.01] \\
+Relational encoder / generated + feedback & 57.74 [53.77, 61.89] & 16.49 [15.35, 17.74] & 80.82 [78.91, 82.54] & 0.01 [0.00, 0.01] \\
+\midrule
+Deep Sets style / fixed & 71.53 [66.55, 76.65] & 17.95 [16.54, 19.47] & 75.06 [72.86, 77.18] & 0.01 [0.00, 0.02] \\
+Deep Sets style / generated + feedback & 60.46 [56.42, 64.57] & 17.05 [16.12, 18.03] & 79.97 [78.21, 81.62] & 0.00 [0.00, 0.01] \\
+\midrule
+Set self-attention / fixed & 70.37 [65.37, 75.51] & 18.22 [16.66, 19.93] & 75.62 [73.52, 77.63] & 0.01 [0.00, 0.01] \\
+Set self-attention / generated + feedback & 59.51 [55.56, 63.57] & 16.57 [15.62, 17.57] & 80.10 [78.26, 81.84] & 0.01 [0.00, 0.01] \\
+\bottomrule
+\end{tabular}

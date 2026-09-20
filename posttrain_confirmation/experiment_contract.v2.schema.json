@@ -1,0 +1,614 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Experiment Contract v2: mode-specific design records",
+  "$comment": "Structure only. Scientific readiness, permission, executed controls and digest validity require scoped review. New contracts use v2; historical v1 is readable through the compatibility entrypoint.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "mode",
+    "experiment_id",
+    "objective",
+    "inputs",
+    "resource_budget",
+    "failure_handling",
+    "claim_ceiling"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "experiment-contract.v2"
+    },
+    "mode": {
+      "enum": [
+        "confirmatory",
+        "development-diagnostic",
+        "deterministic-contract"
+      ]
+    },
+    "experiment_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "objective": {
+      "type": "string",
+      "minLength": 1
+    },
+    "inputs": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "oneOf": [
+          {
+            "type": "string",
+            "minLength": 1
+          },
+          {
+            "type": "object",
+            "minProperties": 1
+          }
+        ]
+      }
+    },
+    "resource_budget": {
+      "type": "object",
+      "minProperties": 1
+    },
+    "failure_handling": {
+      "oneOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "object",
+          "minProperties": 1
+        }
+      ]
+    },
+    "claim_ceiling": {
+      "type": "string",
+      "minLength": 1
+    },
+    "checks": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "oneOf": [
+          {
+            "type": "string",
+            "minLength": 1
+          },
+          {
+            "type": "object",
+            "minProperties": 1
+          }
+        ]
+      }
+    },
+    "non_applicable": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "estimands": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "oneOf": [
+          {
+            "type": "string",
+            "minLength": 1
+          },
+          {
+            "type": "object",
+            "minProperties": 1
+          }
+        ]
+      }
+    },
+    "independent_unit": {
+      "enum": [
+        "world",
+        "seed_family",
+        "hardware_unit",
+        "field_run",
+        "other_registered"
+      ]
+    },
+    "independent_unit_definition": {
+      "type": "string",
+      "minLength": 1
+    },
+    "treatments": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "oneOf": [
+          {
+            "type": "string",
+            "minLength": 1
+          },
+          {
+            "type": "object",
+            "minProperties": 1
+          }
+        ]
+      }
+    },
+    "controls": {
+      "type": "object",
+      "required": [
+        "positive",
+        "negative"
+      ],
+      "properties": {
+        "positive": {
+          "oneOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "object",
+              "minProperties": 1
+            }
+          ]
+        },
+        "negative": {
+          "oneOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "object",
+              "minProperties": 1
+            }
+          ]
+        }
+      },
+      "additionalProperties": true
+    },
+    "analysis_plan": {
+      "oneOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "object",
+          "minProperties": 1
+        }
+      ]
+    },
+    "minimum_effects": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "oneOf": [
+          {
+            "type": "string",
+            "minLength": 1
+          },
+          {
+            "type": "object",
+            "minProperties": 1
+          }
+        ]
+      }
+    },
+    "sample_size_plan": {
+      "type": "object",
+      "required": [
+        "size_rule",
+        "power_or_sensitivity"
+      ],
+      "properties": {
+        "size_rule": {
+          "oneOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "object",
+              "minProperties": 1
+            }
+          ]
+        },
+        "power_or_sensitivity": {
+          "oneOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "object",
+              "minProperties": 1
+            }
+          ]
+        }
+      },
+      "additionalProperties": true
+    },
+    "multiplicity": {
+      "oneOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "object",
+          "minProperties": 1
+        }
+      ]
+    },
+    "fidelity": {
+      "enum": [
+        "R0",
+        "R1",
+        "R2",
+        "R2.5",
+        "R3",
+        "R4"
+      ]
+    },
+    "freeze_digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "embargo": {
+      "type": "object",
+      "required": [
+        "confirmation_unopened",
+        "separation"
+      ],
+      "properties": {
+        "confirmation_unopened": {
+          "type": "boolean"
+        },
+        "separation": {
+          "oneOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "object",
+              "minProperties": 1
+            }
+          ]
+        }
+      },
+      "additionalProperties": true
+    },
+    "admissibility": {
+      "type": "object",
+      "required": [
+        "A0",
+        "A1",
+        "A2",
+        "A3",
+        "A4",
+        "A5"
+      ],
+      "properties": {
+        "A0": {
+          "type": "object",
+          "required": [
+            "status",
+            "reason"
+          ],
+          "properties": {
+            "status": {
+              "enum": [
+                "PASS",
+                "FAIL",
+                "UNKNOWN",
+                "NOT_APPLICABLE"
+              ]
+            },
+            "reason": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "additionalProperties": true
+        },
+        "A1": {
+          "type": "object",
+          "required": [
+            "status",
+            "reason"
+          ],
+          "properties": {
+            "status": {
+              "enum": [
+                "PASS",
+                "FAIL",
+                "UNKNOWN",
+                "NOT_APPLICABLE"
+              ]
+            },
+            "reason": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "additionalProperties": true
+        },
+        "A2": {
+          "type": "object",
+          "required": [
+            "status",
+            "reason"
+          ],
+          "properties": {
+            "status": {
+              "enum": [
+                "PASS",
+                "FAIL",
+                "UNKNOWN",
+                "NOT_APPLICABLE"
+              ]
+            },
+            "reason": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "additionalProperties": true
+        },
+        "A3": {
+          "type": "object",
+          "required": [
+            "status",
+            "reason"
+          ],
+          "properties": {
+            "status": {
+              "enum": [
+                "PASS",
+                "FAIL",
+                "UNKNOWN",
+                "NOT_APPLICABLE"
+              ]
+            },
+            "reason": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "additionalProperties": true
+        },
+        "A4": {
+          "type": "object",
+          "required": [
+            "status",
+            "reason"
+          ],
+          "properties": {
+            "status": {
+              "enum": [
+                "PASS",
+                "FAIL",
+                "UNKNOWN",
+                "NOT_APPLICABLE"
+              ]
+            },
+            "reason": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "additionalProperties": true
+        },
+        "A5": {
+          "type": "object",
+          "required": [
+            "status",
+            "reason"
+          ],
+          "properties": {
+            "status": {
+              "enum": [
+                "PASS",
+                "FAIL",
+                "UNKNOWN",
+                "NOT_APPLICABLE"
+              ]
+            },
+            "reason": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "launch_gate": {
+      "type": "object",
+      "required": [
+        "target",
+        "status",
+        "reason"
+      ],
+      "properties": {
+        "target": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "enum": [
+            "GO",
+            "NO_GO"
+          ]
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "mode": {
+            "const": "confirmatory"
+          }
+        },
+        "required": [
+          "mode"
+        ]
+      },
+      "then": {
+        "required": [
+          "estimands",
+          "independent_unit",
+          "treatments",
+          "controls",
+          "analysis_plan",
+          "minimum_effects",
+          "sample_size_plan",
+          "multiplicity",
+          "fidelity",
+          "freeze_digest",
+          "embargo",
+          "admissibility",
+          "launch_gate"
+        ]
+      },
+      "else": {
+        "required": [
+          "checks"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "mode": {
+            "const": "confirmatory"
+          },
+          "launch_gate": {
+            "properties": {
+              "status": {
+                "const": "GO"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          }
+        },
+        "required": [
+          "mode",
+          "launch_gate"
+        ]
+      },
+      "then": {
+        "properties": {
+          "admissibility": {
+            "properties": {
+              "A0": {
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "PASS",
+                      "NOT_APPLICABLE"
+                    ]
+                  }
+                }
+              },
+              "A1": {
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "PASS",
+                      "NOT_APPLICABLE"
+                    ]
+                  }
+                }
+              },
+              "A2": {
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "PASS",
+                      "NOT_APPLICABLE"
+                    ]
+                  }
+                }
+              },
+              "A3": {
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "PASS",
+                      "NOT_APPLICABLE"
+                    ]
+                  }
+                }
+              },
+              "A4": {
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "PASS",
+                      "NOT_APPLICABLE"
+                    ]
+                  }
+                }
+              },
+              "A5": {
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "PASS",
+                      "NOT_APPLICABLE"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "embargo": {
+            "properties": {
+              "confirmation_unopened": {
+                "const": true
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "mode": {
+            "const": "confirmatory"
+          },
+          "independent_unit": {
+            "const": "other_registered"
+          }
+        },
+        "required": [
+          "mode",
+          "independent_unit"
+        ]
+      },
+      "then": {
+        "required": [
+          "independent_unit_definition"
+        ]
+      }
+    }
+  ],
+  "additionalProperties": true
+}
